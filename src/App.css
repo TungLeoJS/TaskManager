@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+.mt-15{
+  margin-top: 15px;
+}
+
+.ml-5{
+  margin-left: 5px;
+}
+
+.mr-5{
+  margin-right: 5px;
+}
+
+.text-right{
+  float: right;
+}
+
+.label-success{
+  cursor: pointer;
+}
+
+.label-danger{
+  cursor: pointer;
+}
