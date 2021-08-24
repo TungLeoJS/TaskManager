@@ -60,3 +60,12 @@
 .label-danger{
   cursor: pointer;
 }
+
+.sort-selected::after {
+  content: '\f058';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: normal;
+  font-style: normal;
+  margin: 0 0 0 10px;
+  display: inline-block;
+}

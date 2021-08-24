@@ -16,7 +16,8 @@ class App extends Component {
         name: '',
         status: -1
       },
-      searchText: ''
+      searchText: '',
+      sort: ''
     };
   }
 
@@ -151,8 +152,15 @@ class App extends Component {
       })
   }
 
+  onSort = (sort) => {
+    this.setState({
+      sort
+    })
+  }
+
   render() {
-    let { tasks, isDisplayForm, taskEditing, filter, searchText } = this.state;
+    let { tasks, isDisplayForm, taskEditing, filter, searchText, sort } = this.state;
+    const { sortBy, sortValue} = sort;
     let elmTaskForm = isDisplayForm ? <TaskForm task={taskEditing} onCloseForm={this.onCloseForm} onSubmit={this.onSubmit}/> : '';
     if (filter) {
       if (filter.name) {
@@ -173,6 +181,22 @@ class App extends Component {
       tasks = tasks.filter((task) => {
         return task.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1;
       })
+    }
+
+    if(sort.sortBy === 'name'){
+      tasks.sort((a,b) => {
+        if(a.name > b.name) return sortValue;
+        else if(a.name < b.name) return -sortValue;
+        else return 0;
+      })
+    }
+
+    if(sort.sortBy === 'status'){
+      tasks.sort((a,b) => {
+        if(a.status > b.status) return -sortValue;
+        else if(a.status < b.status) return sortValue;
+        else return 0;
+      }) 
     }
 
     return (
@@ -198,7 +222,7 @@ class App extends Component {
               <span className="fa fa-plus mr-5"></span>Generate Task
             </button>
             {/* Search and Sort */}
-            <Control onSearch={this.onSearch}/>
+            <Control onSearch={this.onSearch} onSort={this.onSort}/>
             {/* Task List */}
             <div className="row mt-15">
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">

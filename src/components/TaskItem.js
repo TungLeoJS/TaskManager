@@ -1,10 +1,6 @@
 import { Component } from "react";
 
 class TaskItem extends Component {
-    constructor(props){
-        super(props);
-    }
-
     onDelete = () => {
       this.props.onDelete(this.props.task.id);
     }
